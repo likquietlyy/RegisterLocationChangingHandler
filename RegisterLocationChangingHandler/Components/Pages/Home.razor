@@ -1,7 +1,23 @@
 ﻿@page "/"
+@inject IJSRuntime JS
 
 <PageTitle>Home</PageTitle>
 
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
+
+<button @onclick="SetHash">Set Hash</button>
+
+<script>
+  window.setHash = () => {
+    window.location.hash = "qwe"
+  };
+</script>
+
+@code {
+  private async Task SetHash()
+  {
+    await JS.InvokeAsync<string>("setHash");
+  }
+}
